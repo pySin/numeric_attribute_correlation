@@ -19,4 +19,7 @@ Python(mysql.connector and re libraries)
 5. Open the numeric_attribute_correlation.py file and change the mysql.connector.connect data to your host, user and password data. Change the database name and the table name with the names you chose when creating the main object at line 287. 
 
 ## Examples of use
-
+The initial table should look like this:
+![Show the MySQL Data Imort Wizard](https://github.com/pySin/numeric_attribute_correlation/blob/main/pictures/nac_source_table.jpg?raw=true)
+The result table should look like this#
+![Show the MySQL Data Imort Wizard](https://github.com/pySin/numeric_attribute_correlation/blob/main/pictures/nac_result_table.jpg?raw=true)
