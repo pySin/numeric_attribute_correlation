@@ -20,4 +20,3 @@ Python(mysql.connector and re libraries)
 
 ## Examples of use
 
-![Show the MySQL Data Imort Wizard](https://github.com/pySin/numeric_attribute_correlation/blob/main/2008_predigests_P1290110.jpg?raw=true)
