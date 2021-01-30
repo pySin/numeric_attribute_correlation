@@ -21,5 +21,5 @@ Python(mysql.connector and re libraries)
 ## Examples of use
 The initial table should look like this:
 ![Show the MySQL Data Imort Wizard](https://github.com/pySin/numeric_attribute_correlation/blob/main/pictures/nac_source_table.jpg?raw=true)
-The result table should look like this#
+The result table should look like this:
 ![Show the MySQL Data Imort Wizard](https://github.com/pySin/numeric_attribute_correlation/blob/main/pictures/nac_result_table.jpg?raw=true)
