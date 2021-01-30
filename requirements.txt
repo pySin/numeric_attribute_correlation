@@ -1,0 +1,11 @@
+#
+# Requirements
+#
+
+MySQL Workbench 8.0.18
+Python 3.7.4
+  - Library dependencies
+    + re
+    + mysql-connector-python==8.0.15    
+    # Checks style, syntax, and other useful errors
+    + flake8==3.8.4
