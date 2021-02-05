@@ -1,4 +1,11 @@
-# Test Requierments
+#
+# Test Requirements
+#
 
-1. Create a database called 'test_correlation' and a table inside called 'protein_measures' using the CSV file provided('main_measures.csv'). Keep the names in the table the same as the ones in the CSV file.
-2. Run the 'nc_correlation.py' file.
+MySQL Workbench 8.0.18
+Python 3.7.4
+  - Library dependencies
+    + unittest
+    + mysql-connector-python==8.0.15    
+    # Checks style, syntax, and other useful errors
+    + flake8==3.8.4
