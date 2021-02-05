@@ -8,6 +8,7 @@ Find correlations between the numeric attributes of any table. Only the quantita
 
 ## Technologies used
 MySQL Workbench
+
 Python(mysql.connector and re libraries)
 
 ## Setup
