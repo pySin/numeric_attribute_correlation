@@ -207,7 +207,6 @@ class m_to_class:
             PRIMARY KEY(id)
             );
                  ''' % (self.table_name, self.database, query_part)
-        print(yes_no)
 
         conn = mysql.connector.connect(host='localhost', user='root',
                                        password='dance')
@@ -270,9 +269,6 @@ class m_to_class:
                 );
                     ''' % (self.table_name, self.database, query_part,
                            main_column, case_query_part)
-
-        print(self.main_columns)
-        print(yn_insert)
 
         conn = mysql.connector.connect(host='localhost', user='root',
                                        password='dance')
