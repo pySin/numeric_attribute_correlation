@@ -276,6 +276,67 @@ class m_to_class:
         cursor.execute(yn_insert)
         conn.commit()
         conn.close()
+        
+    # If a column data is not proper turn it to null.
+    def column_nullify(self):
+        m_to_class.get_col_names(self)
+        m_table_columns = self.table_columns[:]
+        m_table_columns.remove('id')
+
+        # Create MySQL rows counting expression
+        for item in m_table_columns:
+            column_check = self.table_name+'_'+item
+
+            query = """
+                SELECT COUNT(*) FROM %s;
+                    """ % column_check
+
+            conn = mysql.connector.connect(host='localhost', user='root',
+                                           password='dance')
+            cursor = conn.cursor()
+            cursor.execute(query)
+            row_count = cursor.fetchall()
+            conn.commit()
+            conn.close()
+
+            # If a table represening a column has less than 4 records turn
+            # it's comparisson results in the Yes-No table to NULL.
+            if row_count[0][0] < 4:
+
+                # Nullify a column.
+                query_2 = """
+                    UPDATE %s_cs
+                    SET %s = NULL;
+                          """ % (self.table_name, item)
+
+                conn = mysql.connector.connect(host='localhost', user='root',
+                                               password='dance')
+                cursor = conn.cursor()
+                cursor.execute(query_2)
+                conn.commit()
+                conn.close()
+
+                # Transform a list into part of MySQL expression.
+                m_table_columns_ext = [x+' = NULL' for x in m_table_columns]
+                m_table_columns_ext = str(m_table_columns_ext)
+                m_table_columns_ext = m_table_columns_ext.replace('[', '')
+                m_table_columns_ext = m_table_columns_ext.replace(']', '')
+                m_table_columns_ext = m_table_columns_ext.replace('\'', '')
+
+                # Nullify a row.
+                query_3 = """
+        UPDATE %s_cs
+        SET %s
+        WHERE %s_c = \'%s\';
+                          """ % (self.table_name, m_table_columns_ext,
+                                 self.database, item)
+
+                conn = mysql.connector.connect(host='localhost', user='root',
+                                               password='dance')
+                cursor = conn.cursor()
+                cursor.execute(query_3)
+                conn.commit()
+                conn.close()
 
 
 # Functions call.
@@ -305,6 +366,9 @@ def call_functions():
     # Compare every protein concentration to every other protein concentration.
     for item in meas_to_class.table_columns:
         meas_to_class.yes_no_insert(item)
+        
+    # Check if any of the protein columns is not-applicable.
+    meas_to_class.column_nullify()
 
 
 if __name__ == '__main__':
