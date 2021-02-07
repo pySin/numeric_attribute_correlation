@@ -152,8 +152,45 @@ class correlation_test(unittest.TestCase):
                          (1, 'DYRK1A_N', None, 'Yes', 'No', 'No', 'No'),
                          'Tuple not the same.')
 
-        # Deletre all the tables used in the test.
+    def test_7_nullify(self):
+
+        # Delete a row to make a table unusable.
+        query = """
+            DELETE FROM test_correlation.protein_measures_pakt_n
+            WHERE pakt_n = 3;
+                """
+
+        conn = mysql.connector.connect(host='localhost', user='root',
+                                       password='dance')
+
+        cursor = conn.cursor()
+        cursor.execute(query)
+        conn.commit()
+
+        # Check for unusable tables.
+        self.correlation.column_nullify()
+
         query_2 = """
+                SELECT * FROM test_correlation.protein_measures_cs
+                WHERE test_correlation_c = 'DYRK1A_N'
+                  """
+
+        conn = mysql.connector.connect(host='localhost', user='root',
+                                       password='dance')
+
+        cursor = conn.cursor()
+        cursor.execute(query_2)
+        self.result = cursor.fetchall()
+        conn.commit()
+
+        # Check if the first row of the comparrison table has changed
+        # properly after the deliberate data damage.
+        self.assertEqual((self.result[0]),
+                         (1, 'DYRK1A_N', None, 'Yes', 'No', None, 'No'),
+                         'Tuples not the same')
+
+        # Deletre all the tables used in the test.
+        query_3 = """
                 DROP TABLES
                 test_correlation.protein_measures_copy,
                 test_correlation.protein_measures_copy_2,
@@ -170,7 +207,7 @@ class correlation_test(unittest.TestCase):
                                        password='dance')
 
         cursor = conn.cursor()
-        cursor.execute(query_2)
+        cursor.execute(query_3)
         conn.commit()
 
 
