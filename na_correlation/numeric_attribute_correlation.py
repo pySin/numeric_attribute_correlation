@@ -47,7 +47,7 @@ class m_to_class:
     def copy_main_table(self):
         # Make 2 copies of the main table. The second copy will be transformed
         # to have values from 1 to 4. These values represent in which quarter
-        # of the column range a particular cell was found to be. The firs
+        # of the column range a particular cell was found to be. The first
         # column is used for the calculations while the second column is
         # changing.
 
