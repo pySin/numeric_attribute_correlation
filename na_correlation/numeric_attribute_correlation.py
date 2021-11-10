@@ -219,8 +219,8 @@ class m_to_class:
         # Check if the secondary proteins match the main protein on the level
         # of their concentration. Number 1 of the main protein should match
         # the lowest average of the secondary protein. The 2 should be smaller
-        # than 3 and 3 smaller than 4. Inthis way the main and the secondary
-        # protein synchronize on there concentration levels.
+        # than 3 and 3 smaller than 4. In this way the main and the secondary
+        # protein syncronize on their concentration levels.
 
         # Copy the table columns and remove the main column so it doesn't
         # compare with itself.
